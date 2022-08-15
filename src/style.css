@@ -44,15 +44,20 @@ picture {
 /* ---------------------------------------------- */
 
 :root {
+  --fontSize-s: 1.2rem;
   --fontSize-default: 1.6rem;
   --fontSize-med: 2rem;
   --fontSize-l: 2.6rem;
   --fontSize-xl: 4rem;
   --color-main: #f9f3ee;
   --color-secondary: #cdf0ea;
+  --color-accent: #fdeff4;
   --color-grey: #545454;
+  --color-red: #ff6363;
+  --color-red-dark: #e65959;
   --gap-s: 1em;
   --gap-m: 4rem;
+  --gap-l: 7rem;
   --padding-xs: 1rem 2rem;
   --padding-s: 3rem 6rem;
   --padding-m: 5rem 6rem;
@@ -63,7 +68,6 @@ picture {
 .grid {
   display: grid;
   grid-template-columns: 1fr 5fr;
-  /* grid-template-rows: 1fr 100%; */
 }
 
 .flex {
@@ -123,7 +127,7 @@ picture {
 }
 
 .notes {
-  min-height: 80vh;
+  min-height: 85vh;
   padding: var(--padding-s);
 }
 
@@ -141,6 +145,75 @@ picture {
   background-color: var(--color-secondary);
   grid-column: 2 / 3;
   padding: var(--padding-s);
-  max-height: 90%;
+  max-height: 95%;
   border: var(--border);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 18rem;
+  gap: var(--gap-l);
+  justify-items: center;
+  align-items: center;
+}
+
+.notes__grid--item {
+  padding: var(--padding-xs);
+  position: relative;
+  border: 1px solid black;
+  background-color: var(--color-accent);
+  border-radius: 1rem;
+  width: 100%;
+  min-height: 100%;
+  text-align: center;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--gap-s);
+}
+
+.doneBtn {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  padding: 0.3em 1em;
+  height: 3rem;
+  width: 7rem;
+  border-radius: 2rem;
+
+  background-color: var(--color-secondary);
+  text-align: center;
+  font-weight: 700;
+  font-size: var(--fontSize-s);
+  border: var(--border);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.doneBtn:hover {
+  background-color: #63c7b2;
+}
+
+.doneBtn:active,
+.deleteBtn:active {
+  transform: translateY(2px);
+}
+
+.deleteBtn {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0.3em;
+  height: 3rem;
+  width: 7rem;
+  border-radius: 2rem;
+  background-color: var(--color-red);
+  text-align: center;
+  font-weight: 700;
+  font-size: var(--fontSize-s);
+  border: var(--border);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.deleteBtn:hover {
+  background-color: var(--color-red-dark);
 }
