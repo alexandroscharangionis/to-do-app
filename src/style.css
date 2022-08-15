@@ -30,7 +30,7 @@ body {
   line-height: 1.5;
   min-height: 100vh;
   font-size: var(--fontSize-default);
-  max-width: 120rem;
+  max-width: 100%;
   margin: 0 auto;
   font-family: "Montserrat", sans-serif;
 }
@@ -47,38 +47,100 @@ picture {
   --fontSize-default: 1.6rem;
   --fontSize-med: 2rem;
   --fontSize-l: 2.6rem;
-  --color-main: #d7fcd4;
-  --color-main-alt: #b6cca1;
-  --color-secondary: #30011e;
-  --color-accent: #b68f40;
+  --fontSize-xl: 4rem;
+  --color-main: #f9f3ee;
+  --color-secondary: #cdf0ea;
   --color-grey: #545454;
+  --gap-s: 1em;
+  --gap-m: 4rem;
+  --padding-xs: 1rem 2rem;
+  --padding-s: 3rem 6rem;
+  --padding-m: 5rem 6rem;
+  --border: 2px solid var(--color-grey);
 }
 
 /* ---------------------------------------------- */
 .grid {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 5fr;
+  /* grid-template-rows: 1fr 100%; */
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
 }
 
 #header {
-  height: 20vh;
-  background-color: var(--color-main-alt);
+  padding: var(--padding-s);
+  border: var(--border);
+  background-color: var(--color-main);
 }
 
 .header__nav {
-  display: flex;
+  justify-content: space-between;
+}
+
+.header__nav--list {
+  gap: var(--gap-s);
+  list-style: none;
+}
+
+.header__nav--list button {
+  padding: var(--padding-xs);
+  font-family: inherit;
+  font-weight: 700;
+  background-color: transparent;
+  color: #000;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.header__nav--list button:hover {
+  background-color: var(--color-secondary);
+}
+
+.header__nav--list button:active {
+  background-color: var(--color-secondary);
+  transform: translateY(2px);
+}
+
+.icon {
+  height: 4rem;
+  width: 4rem;
+}
+
+.header__logo {
+  font-size: var(--fontSize-xl);
 }
 
 .notes {
-  height: 70vh;
+  min-height: 80vh;
+  padding: var(--padding-s);
 }
 
 .notes__nav {
-  background-color: var(--color-main-alt);
   grid-column: 1 / 2;
+  gap: var(--gap-m);
+}
+
+.notes__nav--list {
+  list-style: none;
+  gap: var(--gap-s);
 }
 
 .notes__grid {
-  background-color: var(--color-main);
+  background-color: var(--color-secondary);
   grid-column: 2 / 3;
+  padding: var(--padding-s);
+  max-height: 90%;
+  border: var(--border);
 }
