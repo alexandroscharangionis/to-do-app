@@ -142,7 +142,7 @@ picture {
 }
 
 .notes__grid {
-  background-color: var(--color-secondary);
+  background-color: var(--color-main);
   grid-column: 2 / 3;
   padding: var(--padding-s);
   max-height: 95%;
@@ -160,6 +160,7 @@ picture {
   position: relative;
   border: 1px solid black;
   background-color: var(--color-accent);
+  background-color: #fff;
   border-radius: 1rem;
   width: 100%;
   min-height: 100%;
@@ -167,6 +168,7 @@ picture {
   justify-content: flex-start;
   align-items: center;
   gap: var(--gap-s);
+  box-shadow: 1.5px 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .doneBtn {
