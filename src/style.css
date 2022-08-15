@@ -53,3 +53,32 @@ picture {
   --color-accent: #b68f40;
   --color-grey: #545454;
 }
+
+/* ---------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+#header {
+  height: 20vh;
+  background-color: var(--color-main-alt);
+}
+
+.header__nav {
+  display: flex;
+}
+
+.notes {
+  height: 70vh;
+}
+
+.notes__nav {
+  background-color: var(--color-main-alt);
+  grid-column: 1 / 2;
+}
+
+.notes__grid {
+  background-color: var(--color-main);
+  grid-column: 2 / 3;
+}
