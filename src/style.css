@@ -33,6 +33,7 @@ body {
   max-width: 100%;
   margin: 0 auto;
   font-family: "Montserrat", sans-serif;
+  position: relative;
 }
 
 img,
@@ -200,7 +201,7 @@ picture {
   border: var(--border);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 18rem;
+  grid-auto-rows: 24rem;
   gap: var(--gap-l);
   justify-items: center;
   align-items: center;
@@ -225,6 +226,38 @@ picture {
 .notes__grid--item span {
   text-transform: uppercase;
   font-weight: 500;
+}
+
+.to-do-content {
+  display: none;
+  position: absolute;
+  background-color: var(--color-accent);
+  font-weight: 500;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 40vw;
+  height: 40vh;
+  border-radius: 1rem;
+  border: 1px solid black;
+  padding: var(--padding-s);
+  color: var(--color-grey);
+  justify-content: center;
+  align-items: left;
+  z-index: 30;
+  gap: var(--gap-s);
+}
+
+.to-do-wrapper {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.508);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  transform: translateY(-50%) translateX(-50%);
+  z-index: 10;
 }
 
 .doneBtn {
