@@ -36,3 +36,38 @@ export function displayToDo(toDo) {
   deadlineBox.append(duePara, dueSpan);
   notesGrid.appendChild(toDoItem);
 }
+
+export function expandToDo(toDo) {
+  const notesGrid = document.getElementById("notesGrid");
+  const toDoWrapper = document.createElement("div");
+  const toDoContent = document.createElement("div");
+  const toDoTitle = document.createElement("h3");
+  const toDoText = document.createElement("p");
+
+  toDoWrapper.classList.add("to-do-wrapper");
+  toDoContent.classList.add("to-do-content", "flex-col");
+  toDoTitle.classList.add("notes__grid--item-title");
+  toDoTitle.textContent = toDo.title;
+  toDoText.textContent = toDo.text;
+
+  toDoWrapper.appendChild(toDoContent);
+  toDoContent.append(toDoTitle, toDoText);
+  notesGrid.appendChild(toDoWrapper);
+}
+
+export function expandClickedItems() {
+  const allToDos = document.querySelectorAll(".notes__grid--item");
+  const notesGrid = document.getElementById("notesGrid");
+
+  allToDos.forEach((toDo, index) => {
+    toDo.setAttribute("id", `${index}`);
+    toDo.addEventListener("click", () => {
+      // console.log(toDo.getAttribute("id"));
+      expandToDo(toDoList[index]);
+      const wrapper = document.querySelector(".to-do-wrapper");
+      wrapper.addEventListener("click", () => {
+        notesGrid.removeChild(wrapper);
+      });
+    });
+  });
+}
