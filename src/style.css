@@ -229,7 +229,7 @@ picture {
 }
 
 .to-do-content {
-  display: none;
+  /* display: none; */
   position: absolute;
   background-color: var(--color-accent);
   font-weight: 500;
@@ -249,7 +249,7 @@ picture {
 }
 
 .to-do-wrapper {
-  display: none;
+  /* display: none; */
   background-color: rgba(0, 0, 0, 0.508);
   position: absolute;
   top: 50%;
