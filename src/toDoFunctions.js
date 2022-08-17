@@ -27,7 +27,7 @@ function createToDoElements(toDo) {
   toDoTitle.textContent = toDo.title;
   duePara.textContent = "Due:";
   dueSpan.textContent = toDo.dueDate;
-  doneBtn.textContent = "done";
+  doneBtn.innerText = "done?";
   deleteBtn.textContent = "delete";
 
   notesGrid.appendChild(toDoItem);
@@ -35,7 +35,11 @@ function createToDoElements(toDo) {
   deadlineBox.append(duePara, dueSpan);
   notesGrid.appendChild(toDoItem);
 
-  return document.getElementById(`item${toDo.key}`);
+  return [
+    document.getElementById(`item${toDo.key}`),
+    document.getElementById(`del${toDo.key}`),
+    document.getElementById(`done${toDo.key}`),
+  ];
 }
 
 // Creates DOM elements, adds CSS styles, appends them to DOM
@@ -70,11 +74,24 @@ export function createToDo(title, dueDate, text) {
 
 // Generates HTML & CSS for each element, adds event listeners for 'delete' and 'done'
 export function displayToDo(toDo) {
-  const toDoItem = createToDoElements(toDo);
-  document.getElementById(`del${toDo.key}`).addEventListener("click", (e) => {
+  const [toDoItem, delBtn, doneBtn] = createToDoElements(toDo);
+  delBtn.addEventListener("click", (e) => {
     notesGrid.removeChild(toDoItem);
     toDo.deleteItem(toDo.key);
-    console.log(toDoList);
+  });
+
+  doneBtn.addEventListener("click", () => {
+    toDoItem.classList.toggle("notes__grid--item-inactive");
+    doneBtn.classList.toggle("doneBtn__clicked");
+
+    // Toggle button content and toDo 'done' property
+    if (doneBtn.textContent === "done?") {
+      doneBtn.textContent = "done!";
+      toDo.changeStatus(true);
+    } else {
+      doneBtn.textContent = "done?";
+      toDo.changeStatus(false);
+    }
   });
 }
 
