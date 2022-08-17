@@ -5,6 +5,7 @@ import "../src/style.css";
 /* ------------HELPER FUNCTIONS------------------ */
 /* ---------------------------------------------- */
 
+// Creates DOM elements, adds CSS styles, appends them to DOM, return reference to main to-do item"
 function createToDoElements(toDo) {
   const toDoItem = document.createElement("div");
   const toDoTitle = document.createElement("h3");
@@ -37,6 +38,7 @@ function createToDoElements(toDo) {
   return document.getElementById(`item${toDo.key}`);
 }
 
+// Creates DOM elements, adds CSS styles, appends them to DOM
 function createExpandedToDoElements(toDo) {
   const toDoWrapper = document.createElement("div");
   const toDoContent = document.createElement("div");
@@ -60,11 +62,13 @@ function createExpandedToDoElements(toDo) {
 const notesGrid = document.getElementById("notesGrid");
 export const toDoList = [];
 
+// Creates new object instances, pushes it into array
 export function createToDo(title, dueDate, text) {
   const toDo = new ToDo(title, dueDate, text);
   toDoList.push(toDo);
 }
 
+// Generates HTML & CSS for each element, adds event listeners for 'delete' and 'done'
 export function displayToDo(toDo) {
   const toDoItem = createToDoElements(toDo);
   document.getElementById(`del${toDo.key}`).addEventListener("click", (e) => {
@@ -74,6 +78,7 @@ export function displayToDo(toDo) {
   });
 }
 
+// Expands selected to-do item
 export function expandClickedItems() {
   const allToDos = document.querySelectorAll(".notes__grid--item");
   const toDoArray = Array.from(allToDos);
