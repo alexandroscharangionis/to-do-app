@@ -16,4 +16,8 @@ export default class ToDo {
   deleteItem(index) {
     toDoList.splice(index, 1);
   }
+
+  changeStatus(status) {
+    this.done = status;
+  }
 }
