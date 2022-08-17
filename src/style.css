@@ -221,6 +221,13 @@ picture {
   align-items: center;
   gap: var(--gap-s);
   box-shadow: 1.5px 3px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+}
+
+.notes__grid--item:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .notes__grid--item span {
