@@ -23,7 +23,9 @@ export function displayToDo(toDo) {
   toDoTitle.classList.add("notes__grid--item-title");
   duePara.classList.add("notes__grid--item-para");
   doneBtn.classList.add("doneBtn");
+  doneBtn.setAttribute("id", "done");
   deleteBtn.classList.add("deleteBtn");
+  deleteBtn.setAttribute("id", "delete");
 
   toDoTitle.textContent = toDo.title;
   duePara.textContent = "Due:";
@@ -70,4 +72,8 @@ export function expandClickedItems() {
       });
     });
   });
+
+  function deleteToDo(toDo) {
+    // const deleteBtn = document.ATTRIBUTE_NODE;
+  }
 }
