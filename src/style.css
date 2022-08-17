@@ -223,6 +223,11 @@ picture {
   box-shadow: 1.5px 3px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.2s;
 }
+.notes__grid--item-inactive {
+  background-color: #cccccc;
+  color: #adacac;
+  font-style: italic;
+}
 
 .notes__grid--item:hover {
   cursor: pointer;
@@ -283,6 +288,11 @@ picture {
   border: var(--border-s);
   cursor: pointer;
   transition: all 0.2s;
+}
+.doneBtn__clicked {
+  color: #1e8731;
+  background-color: #e4e4e4;
+  font-style: italic;
 }
 
 .doneBtn:hover {
