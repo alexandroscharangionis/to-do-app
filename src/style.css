@@ -241,7 +241,6 @@ picture {
 }
 
 .to-do-content {
-  /* display: none; */
   position: absolute;
   background-color: var(--color-accent);
   font-weight: 500;
@@ -256,7 +255,7 @@ picture {
   color: var(--color-grey);
   justify-content: center;
   align-items: left;
-  z-index: 30;
+  z-index: 50;
   gap: var(--gap-s);
 }
 
@@ -392,4 +391,9 @@ picture {
 
 #todo__text {
   min-height: 20rem;
+}
+
+.errorMsg {
+  color: #ff6363;
+  font-weight: 700;
 }
