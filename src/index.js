@@ -7,6 +7,7 @@ import {
   expandClickedItems,
 } from "/src/toDoFunctions";
 import "../src/style.css";
+import { createForm } from "/src/generate_DOM_elements";
 
 createToDo(
   "Clean house",
@@ -29,3 +30,6 @@ for (let i = 0; i < toDoList.length; i++) {
 }
 
 expandClickedItems();
+
+const newBtn = document.getElementById("createNew");
+newBtn.addEventListener("click", createForm);
