@@ -9,25 +9,26 @@ import {
 const notesGrid = document.getElementById("notesGrid");
 export const toDoList = [];
 
-// Creates new object instances, pushes it into array
+// Creates new object instance, pushes it into array, returns reference to object
 export function createToDo(title, dueDate, text) {
   const toDo = new ToDo(title, dueDate, text);
   toDoList.push(toDo);
+  return toDo;
 }
 
-// Generates HTML & CSS for each element, adds event listeners for 'delete' and 'done'
+// Generates HTML & CSS for each element, adds event listeners for 'delete' and 'done', returns reference to displayed item and object
 export function displayToDo(toDo) {
   const [toDoItem, delBtn, doneBtn] = createToDoElements(toDo);
   delBtn.addEventListener("click", () => {
     notesGrid.removeChild(toDoItem);
-    toDo.deleteItem(toDo.key);
+    toDo.deleteItem(toDo);
   });
 
   doneBtn.addEventListener("click", () => {
     toDoItem.classList.toggle("notes__grid--item-inactive");
     doneBtn.classList.toggle("doneBtn__clicked");
 
-    // Toggle button content and toDo 'done' property
+    // Toggle button text content and toDo 'done' property
     if (doneBtn.textContent === "done?") {
       doneBtn.textContent = "done!";
       toDo.changeStatus(true);
@@ -36,23 +37,5 @@ export function displayToDo(toDo) {
       toDo.changeStatus(false);
     }
   });
-}
-
-// Expands selected to-do item
-export function expandClickedItems() {
-  const allToDos = document.querySelectorAll(".notes__grid--item");
-  const toDoArray = Array.from(allToDos);
-
-  toDoArray.forEach((toDo, index) => {
-    const item = document.getElementById(`item${index}`);
-    item.addEventListener("click", (e) => {
-      if (e.target.nodeName.toLowerCase() !== "button") {
-        createExpandedToDoElements(toDoList[index]);
-        const wrapper = document.querySelector(".to-do-wrapper");
-        wrapper.addEventListener("click", () => {
-          notesGrid.removeChild(wrapper);
-        });
-      } else return;
-    });
-  });
+  return [toDoItem, toDo];
 }
