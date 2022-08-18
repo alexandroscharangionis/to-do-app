@@ -54,3 +54,60 @@ export function createExpandedToDoElements(toDo) {
   toDoContent.append(toDoTitle, toDoText);
   notesGrid.appendChild(toDoWrapper);
 }
+
+export function createForm() {
+  const form = document.createElement("form");
+  const toDoWrapper = document.createElement("div");
+  const titleRow = document.createElement("div");
+  const dateRow = document.createElement("div");
+  const textRow = document.createElement("div");
+  const textContent = document.createElement("div");
+  const titleLabel = document.createElement("label");
+  const dateLabel = document.createElement("label");
+  const textLabel = document.createElement("label");
+  const titleInput = document.createElement("input");
+  const dateInput = document.createElement("input");
+  const textArea = document.createElement("textarea");
+  const btnRow = document.createElement("div");
+  const submitBtn = document.createElement("button");
+  const resetBtn = document.createElement("button");
+
+  toDoWrapper.classList.add("to-do-wrapper");
+  form.classList.add("flex-col", "todo__form");
+  titleRow.classList.add("inputRow", "flex");
+  dateRow.classList.add("inputRow", "flex");
+  textRow.classList.add("inputRow", "flex");
+  textContent.classList.add("textContent");
+  btnRow.classList.add("flex_btns");
+  submitBtn.classList.add("form_btn");
+  resetBtn.classList.add("form_btn");
+  titleLabel.setAttribute("for", "todo__title");
+  titleLabel.textContent = "Title:";
+  dateLabel.setAttribute("for", "todo__date");
+  dateLabel.textContent = "Due:";
+  textLabel.setAttribute("for", "todo__text");
+  textLabel.textContent = "Description:";
+  titleInput.setAttribute("id", "todo__title");
+  titleInput.setAttribute("name", "title");
+  titleInput.setAttribute("type", "text");
+  titleInput.setAttribute("required", "");
+  dateInput.setAttribute("id", "todo__date");
+  dateInput.setAttribute("name", "date");
+  dateInput.setAttribute("type", "text");
+  dateInput.setAttribute("required", "");
+  textArea.setAttribute("id", "todo__text");
+  textArea.setAttribute("required", "");
+  submitBtn.setAttribute("id", "submitBtn");
+  submitBtn.textContent = "add";
+  resetBtn.setAttribute("id", "resetBtn");
+  resetBtn.textContent = "reset";
+
+  titleRow.append(titleLabel, titleInput);
+  dateRow.append(dateLabel, dateInput);
+  textRow.appendChild(textContent);
+  textContent.append(textLabel, textArea);
+  btnRow.append(submitBtn, resetBtn);
+  form.append(titleRow, dateRow, textRow, btnRow);
+  toDoWrapper.append(form);
+  notesGrid.appendChild(toDoWrapper);
+}
