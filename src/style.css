@@ -295,12 +295,14 @@ picture {
   font-style: italic;
 }
 
-.doneBtn:hover {
+.doneBtn:hover,
+.form_btn:hover {
   background-color: var(--color-secondary);
 }
 
 .doneBtn:active,
-.deleteBtn:active {
+.deleteBtn:active,
+.form_btn:active {
   transform: translateY(2px);
 }
 
@@ -324,4 +326,70 @@ picture {
 
 .deleteBtn:hover {
   background-color: var(--color-red-dark);
+}
+
+.todo__form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  background-color: var(--color-accent);
+  padding: var(--padding-s);
+  gap: var(--gap-s);
+  width: 50%;
+  height: 60%;
+  border: 2px solid var(--color-grey);
+  border-radius: 2rem;
+  align-items: center;
+  z-index: 100;
+}
+
+/* .close_btn {
+  height: 2rem;
+  width: 2rem;
+  position: absolute;
+  left: 92%;
+  top: 5%;
+} */
+
+/* .close_btn:hover {
+  cursor: pointer;
+} */
+
+.form_btn {
+  font-family: inherit;
+  padding: 0.3em;
+  height: 4rem;
+  width: 9rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  border: 1px solid var(--color-grey);
+  background-color: #fff;
+  color: #000;
+  transition: all 0.2s;
+}
+
+.flex_btns {
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+}
+
+.inputRow {
+  gap: var(--gap-s);
+  justify-content: space-between;
+  align-items: center;
+  width: 40rem;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-s);
+  min-width: 100%;
+}
+
+#todo__text {
+  min-height: 20rem;
 }
