@@ -1,6 +1,8 @@
 "use strict";
 
-// Creates DOM elements, adds CSS styles, appends them to DOM, return reference to main to-do item"
+import intakeFormData from "./formFunctions";
+
+// Creates DOM elements, adds CSS styles, appends them to DOM, returns reference to main item and it's buttons"
 export function createToDoElements(toDo) {
   const toDoItem = document.createElement("div");
   const toDoTitle = document.createElement("h3");
@@ -45,6 +47,7 @@ export function createExpandedToDoElements(toDo) {
   const toDoText = document.createElement("p");
 
   toDoWrapper.classList.add("to-do-wrapper");
+  toDoWrapper.setAttribute("id", `wrapper${toDo.title}`);
   toDoContent.classList.add("to-do-content", "flex-col");
   toDoTitle.classList.add("notes__grid--item-title");
   toDoTitle.textContent = toDo.title;
@@ -52,12 +55,14 @@ export function createExpandedToDoElements(toDo) {
 
   toDoWrapper.appendChild(toDoContent);
   toDoContent.append(toDoTitle, toDoText);
-  notesGrid.appendChild(toDoWrapper);
+  notesGrid.appendChild(toDoWrapper, toDoContent);
 }
 
+// Creates DOM elements, adds CSS styles, appends them to DOM, adds event listener for data intake
 export function createForm() {
-  const form = document.createElement("form");
   const toDoWrapper = document.createElement("div");
+  const form = document.createElement("form");
+  const errorMsg = document.createElement("div");
   const titleRow = document.createElement("div");
   const dateRow = document.createElement("div");
   const textRow = document.createElement("div");
@@ -74,6 +79,8 @@ export function createForm() {
 
   toDoWrapper.classList.add("to-do-wrapper");
   form.classList.add("flex-col", "todo__form");
+  errorMsg.setAttribute("id", "error");
+  errorMsg.classList.add("errorMsg");
   titleRow.classList.add("inputRow", "flex");
   dateRow.classList.add("inputRow", "flex");
   textRow.classList.add("inputRow", "flex");
@@ -81,6 +88,7 @@ export function createForm() {
   btnRow.classList.add("flex_btns");
   submitBtn.classList.add("form_btn");
   resetBtn.classList.add("form_btn");
+  form.setAttribute("id", "form");
   titleLabel.setAttribute("for", "todo__title");
   titleLabel.textContent = "Title:";
   dateLabel.setAttribute("for", "todo__date");
@@ -107,11 +115,17 @@ export function createForm() {
   textRow.appendChild(textContent);
   textContent.append(textLabel, textArea);
   btnRow.append(submitBtn, resetBtn);
-  form.append(titleRow, dateRow, textRow, btnRow);
+  form.append(errorMsg, titleRow, dateRow, textRow, btnRow);
   toDoWrapper.append(form);
   notesGrid.appendChild(toDoWrapper);
 
-  toDoWrapper.addEventListener("click", () => {
-    notesGrid.removeChild(toDoWrapper);
+  document
+    .getElementById("submitBtn")
+    .addEventListener("click", intakeFormData);
+
+  toDoWrapper.addEventListener("click", (e) => {
+    if (e.target === toDoWrapper) {
+      notesGrid.removeChild(toDoWrapper);
+    } else return;
   });
 }
