@@ -110,4 +110,8 @@ export function createForm() {
   form.append(titleRow, dateRow, textRow, btnRow);
   toDoWrapper.append(form);
   notesGrid.appendChild(toDoWrapper);
+
+  toDoWrapper.addEventListener("click", () => {
+    notesGrid.removeChild(toDoWrapper);
+  });
 }
