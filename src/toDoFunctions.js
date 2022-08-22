@@ -20,7 +20,9 @@ export function createToDo(title, dueDate, text) {
 export function displayToDo(toDo) {
   const [toDoItem, delBtn, doneBtn] = createToDoElements(toDo);
   delBtn.addEventListener("click", () => {
+    // Removes item from display
     notesGrid.removeChild(toDoItem);
+    // Removes item from array also
     toDo.deleteItem(toDo);
   });
 

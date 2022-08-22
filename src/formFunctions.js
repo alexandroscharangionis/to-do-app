@@ -10,7 +10,7 @@ export default function intakeFormData(event) {
   const title = document.getElementById("todo__title").value;
   const date = document.getElementById("todo__date").value;
   const description = document.getElementById("todo__text").value;
-  if ((title === date) === "" || description === "") {
+  if (title === "" || date === "" || description === "") {
     error.textContent = "Please fill in every field.";
     return;
   } else {
