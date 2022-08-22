@@ -1,6 +1,7 @@
 "use strict";
 import "../src/style.css";
 import { toDoList } from "./toDoFunctions";
+import { displayToDo } from "./toDoFunctions";
 
 export function sortByActive() {
   for (let i = 0; i < toDoList.length; i++) {
@@ -8,6 +9,28 @@ export function sortByActive() {
       document
         .getElementById(`item${toDoList[i].key}`)
         .classList.toggle("hideInactive");
+    }
+  }
+}
+
+export function sortByPriority() {
+  const notesGrid = document.getElementById("notesGrid");
+  const allItems = document.querySelectorAll(".notes__grid--item");
+
+  allItems.forEach((item) => {
+    notesGrid.removeChild(item);
+  });
+
+  if (document.getElementById("priority").checked) {
+    const sortedList = toDoList.slice(0).sort((a, b) => {
+      return new Date(a.dueDate) - new Date(b.dueDate);
+    });
+    for (let i = 0; i < sortedList.length; i++) {
+      displayToDo(sortedList[i]);
+    }
+  } else {
+    for (let i = 0; i < toDoList.length; i++) {
+      displayToDo(toDoList[i]);
     }
   }
 }
