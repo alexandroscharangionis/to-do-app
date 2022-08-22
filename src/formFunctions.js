@@ -13,6 +13,8 @@ export default function intakeFormData(event) {
   if (title === "" || date === "" || description === "") {
     error.textContent = "Please fill in every field.";
     return;
+  } else if (title.length > 20) {
+    error.textContent = "Title shouldn't be longer than 20 characters.";
   } else {
     error.textContent = "";
     const [itemReference, itemObj] = displayToDo(
