@@ -52,6 +52,8 @@ export function createExpandedToDoElements(toDo) {
   toDoTitle.classList.add("notes__grid--item-title");
   toDoTitle.textContent = toDo.title;
   toDoText.textContent = toDo.text;
+  // Adds new line if user pressed "enter"
+  toDoText.innerHTML = toDoText.innerHTML.replace(/\n/g, "<br>\n");
 
   toDoWrapper.appendChild(toDoContent);
   toDoContent.append(toDoTitle, toDoText);
