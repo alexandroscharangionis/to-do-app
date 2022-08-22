@@ -103,7 +103,7 @@ export function createForm() {
   titleInput.setAttribute("required", "");
   dateInput.setAttribute("id", "todo__date");
   dateInput.setAttribute("name", "date");
-  dateInput.setAttribute("type", "text");
+  dateInput.setAttribute("type", "date");
   dateInput.setAttribute("required", "");
   textArea.setAttribute("id", "todo__text");
   textArea.setAttribute("required", "");
