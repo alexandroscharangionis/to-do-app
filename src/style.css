@@ -399,3 +399,7 @@ picture {
   color: #ff6363;
   font-weight: 700;
 }
+
+.hideInactive {
+  display: none;
+}
