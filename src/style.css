@@ -257,6 +257,7 @@ picture {
   align-items: left;
   z-index: 50;
   gap: var(--gap-s);
+  word-wrap: break-word;
 }
 
 .to-do-wrapper {
@@ -391,6 +392,7 @@ picture {
 
 #todo__text {
   min-height: 20rem;
+  background: #fff;
 }
 
 .errorMsg {
