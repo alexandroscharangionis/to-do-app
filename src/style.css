@@ -75,6 +75,7 @@ picture {
 .grid {
   display: grid;
   grid-template-columns: 1fr 5fr;
+  gap: var(--gap-s);
 }
 
 .flex {
@@ -115,18 +116,24 @@ picture {
   transition: all 0.1s;
 }
 
-.header__nav--list button:hover {
+.header__nav--list button:hover,
+.notes__nav--projectTitle h2:hover,
+.header__nav--list button:active {
   background-color: var(--color-secondary);
 }
 
 .header__nav--list button:active {
-  background-color: var(--color-secondary);
   transform: translateY(2px);
 }
 
 .icon {
   height: 4rem;
   width: 4rem;
+}
+
+.icon2 {
+  min-height: 2rem;
+  min-width: 2rem;
 }
 
 .header__logo {
@@ -141,6 +148,17 @@ picture {
 .notes__nav {
   grid-column: 1 / 2;
   gap: var(--gap-m);
+}
+
+.notes__nav--projectTitle {
+  gap: var(--gap-s);
+  align-items: center;
+  justify-content: left;
+}
+
+#projectTitle {
+  word-wrap: break-word;
+  max-width: 14ch;
 }
 
 .notes__nav--list {
@@ -343,18 +361,6 @@ picture {
   align-items: center;
   z-index: 100;
 }
-
-/* .close_btn {
-  height: 2rem;
-  width: 2rem;
-  position: absolute;
-  left: 92%;
-  top: 5%;
-} */
-
-/* .close_btn:hover {
-  cursor: pointer;
-} */
 
 .form_btn {
   font-family: inherit;

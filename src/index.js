@@ -13,6 +13,16 @@ import { sortByActive, sortByPriority } from "./sorting";
 const newBtn = document.getElementById("createNew");
 newBtn.addEventListener("click", createForm);
 
+const projectTitle = document.getElementById("projectTitle");
+projectTitle.addEventListener("blur", () => {
+  if (projectTitle.textContent === "") {
+    projectTitle.textContent = "My project";
+  } else {
+    // const newTitle = projectTitle.textContent;
+    // console.log(newTitle);
+  }
+});
+
 const active = document.getElementById("active");
 active.addEventListener("click", sortByActive);
 
