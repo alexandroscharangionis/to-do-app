@@ -1,6 +1,7 @@
 "use strict";
 
 import intakeFormData from "./formFunctions";
+import { projects } from "./toDoFunctions";
 
 // Creates DOM elements, adds CSS styles, appends them to DOM, returns reference to main item and it's buttons"
 export function createToDoElements(toDo) {
@@ -66,13 +67,16 @@ export function createForm() {
   const form = document.createElement("form");
   const errorMsg = document.createElement("div");
   const titleRow = document.createElement("div");
+  const projectRow = document.createElement("div");
   const dateRow = document.createElement("div");
   const textRow = document.createElement("div");
   const textContent = document.createElement("div");
   const titleLabel = document.createElement("label");
+  const projectLabel = document.createElement("label");
   const dateLabel = document.createElement("label");
   const textLabel = document.createElement("label");
   const titleInput = document.createElement("input");
+  const projectInput = document.createElement("select");
   const dateInput = document.createElement("input");
   const textArea = document.createElement("textarea");
   const btnRow = document.createElement("div");
@@ -84,6 +88,7 @@ export function createForm() {
   errorMsg.setAttribute("id", "error");
   errorMsg.classList.add("errorMsg");
   titleRow.classList.add("inputRow", "flex");
+  projectRow.classList.add("inputRow", "flex");
   dateRow.classList.add("inputRow", "flex");
   textRow.classList.add("inputRow", "flex");
   textContent.classList.add("textContent");
@@ -93,14 +98,32 @@ export function createForm() {
   form.setAttribute("id", "form");
   titleLabel.setAttribute("for", "todo__title");
   titleLabel.textContent = "Title:";
+  projectLabel.setAttribute("for", "todo__project");
+  projectLabel.textContent = "Project:";
   dateLabel.setAttribute("for", "todo__date");
   dateLabel.textContent = "Due:";
   textLabel.setAttribute("for", "todo__text");
   textLabel.textContent = "Description:";
+  titleInput.classList.add("inputSize");
   titleInput.setAttribute("id", "todo__title");
   titleInput.setAttribute("name", "title");
   titleInput.setAttribute("type", "text");
   titleInput.setAttribute("required", "");
+  projectInput.classList.add("inputSize");
+  projectInput.setAttribute("id", "todo__project");
+  projectInput.setAttribute("name", "select");
+  // projectInput.setAttribute("type", "select");
+  projectInput.setAttribute("required", "");
+
+  for (let i = 0; i < projects.length; i++) {
+    let option = document.createElement("option");
+    option.setAttribute("id", `option${i}`);
+    option.setAttribute("value", `${projects[i].name}`);
+    option.textContent = `${projects[i].name}`;
+    projectInput.appendChild(option);
+  }
+
+  dateInput.classList.add("inputSize");
   dateInput.setAttribute("id", "todo__date");
   dateInput.setAttribute("name", "date");
   dateInput.setAttribute("type", "date");
@@ -113,11 +136,12 @@ export function createForm() {
   resetBtn.textContent = "reset";
 
   titleRow.append(titleLabel, titleInput);
+  projectRow.append(projectLabel, projectInput);
   dateRow.append(dateLabel, dateInput);
   textRow.appendChild(textContent);
   textContent.append(textLabel, textArea);
   btnRow.append(submitBtn, resetBtn);
-  form.append(errorMsg, titleRow, dateRow, textRow, btnRow);
+  form.append(errorMsg, titleRow, projectRow, dateRow, textRow, btnRow);
   toDoWrapper.append(form);
   notesGrid.appendChild(toDoWrapper);
 
