@@ -389,6 +389,10 @@ picture {
   width: 40rem;
 }
 
+.inputSize {
+  min-width: 15rem;
+}
+
 .textContent {
   display: flex;
   flex-direction: column;
