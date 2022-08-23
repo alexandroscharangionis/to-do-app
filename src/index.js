@@ -1,6 +1,7 @@
 "use strict";
 
 import {
+  projects,
   toDoList,
   createToDo,
   displayToDo,
@@ -10,16 +11,20 @@ import "../src/style.css";
 import { createForm } from "/src/generate_DOM_elements";
 import { sortByActive, sortByPriority } from "./sorting";
 
+let currentProject = projects[0];
+
 const newBtn = document.getElementById("createNew");
 newBtn.addEventListener("click", createForm);
 
 const projectTitle = document.getElementById("projectTitle");
+projectTitle.textContent = currentProject.name;
+
 projectTitle.addEventListener("blur", () => {
   if (projectTitle.textContent === "") {
-    projectTitle.textContent = "My project";
+    projectTitle.textContent = currentProject.name;
   } else {
-    // const newTitle = projectTitle.textContent;
-    // console.log(newTitle);
+    currentProject.name = projectTitle.textContent;
+    console.log(currentProject.name);
   }
 });
 
