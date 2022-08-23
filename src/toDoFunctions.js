@@ -8,6 +8,7 @@ import {
 
 const notesGrid = document.getElementById("notesGrid");
 export const toDoList = [];
+export const projects = [{ name: "My Project" }];
 
 // Creates new object instance, pushes it into array, returns reference to object
 export function createToDo(title, dueDate, text) {
