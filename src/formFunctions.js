@@ -8,6 +8,7 @@ export default function intakeFormData(event) {
   event.preventDefault();
   const error = document.getElementById("error");
   const title = document.getElementById("todo__title").value;
+  const project = document.getElementById("todo__project").value;
   const date = document.getElementById("todo__date").value;
   const description = document.getElementById("todo__text").value;
   if (title === "" || description === "") {
@@ -18,7 +19,7 @@ export default function intakeFormData(event) {
   } else {
     error.textContent = "";
     const [itemReference, itemObj] = displayToDo(
-      createToDo(title, date, description)
+      createToDo(title, project, date, description)
     );
 
     document.getElementById("form").reset();
