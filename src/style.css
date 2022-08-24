@@ -254,7 +254,7 @@ picture {
 }
 
 .notes__grid--item span {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: 500;
 }
 
