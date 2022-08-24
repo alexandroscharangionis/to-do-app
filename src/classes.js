@@ -1,8 +1,9 @@
 "use strict";
 
 import { toDoList } from "./toDoFunctions";
+import { projects } from "./projectsFunctions";
 
-export default class ToDo {
+export class ToDo {
   static keyCount = 0;
   constructor(title, project, dueDate, text) {
     this.title = title;
@@ -19,5 +20,17 @@ export default class ToDo {
 
   changeStatus(status) {
     this.done = status;
+  }
+}
+
+export class Project {
+  static keyCount = 0;
+  constructor(title) {
+    this.title = title;
+    this.key = Project.keyCount++;
+  }
+
+  deleteItem(item) {
+    projects.splice(projects.indexOf(item), 1);
   }
 }
