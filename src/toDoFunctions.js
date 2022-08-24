@@ -10,8 +10,8 @@ const notesGrid = document.getElementById("notesGrid");
 export const toDoList = [];
 
 // Creates new object instance, pushes it into array, returns reference to object
-export function createToDo(title, dueDate, text) {
-  const toDo = new ToDo(title, dueDate, text);
+export function createToDo(title, project, dueDate, text) {
+  const toDo = new ToDo(title, project, dueDate, text);
   toDoList.push(toDo);
   return toDo;
 }
