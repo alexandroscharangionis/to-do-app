@@ -16,6 +16,9 @@ export function createToDo(title, project, dueDate, text) {
 // Generates HTML & CSS for each element, adds event listeners for 'delete' and 'done', returns reference to displayed item and object
 export function displayToDo(toDo) {
   const [toDoItem, delBtn, doneBtn] = createToDoElements(toDo);
+  if (toDo.done === true) {
+    markAsDone(toDo, toDoItem, doneBtn);
+  }
   delBtn.addEventListener("click", () => {
     // Removes item from display
     notesGrid.removeChild(toDoItem);
@@ -24,17 +27,22 @@ export function displayToDo(toDo) {
   });
 
   doneBtn.addEventListener("click", () => {
-    toDoItem.classList.toggle("notes__grid--item-inactive");
-    doneBtn.classList.toggle("doneBtn__clicked");
-
-    // Toggle button text content and toDo 'done' property
-    if (doneBtn.textContent === "done?") {
-      doneBtn.textContent = "done!";
-      toDo.changeStatus(true);
-    } else {
-      doneBtn.textContent = "done?";
-      toDo.changeStatus(false);
-    }
+    markAsDone(toDo, toDoItem, doneBtn);
   });
   return [toDoItem, toDo];
+}
+
+// Helper functions that marks item as done by changing object property, toggling class and updating text content
+function markAsDone(toDo, toDoItem, doneBtn) {
+  toDoItem.classList.toggle("notes__grid--item-inactive");
+  doneBtn.classList.toggle("doneBtn__clicked");
+
+  // Toggle button text content and toDo 'done' property
+  if (doneBtn.textContent === "done?") {
+    doneBtn.textContent = "done!";
+    toDo.changeStatus(true);
+  } else {
+    doneBtn.textContent = "done?";
+    toDo.changeStatus(false);
+  }
 }
