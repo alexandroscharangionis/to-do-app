@@ -1,5 +1,6 @@
 "use strict";
 import { Project } from "./classes";
+import { createProjectItem } from "./DOM_element_creation";
 
 export const projects = [];
 export let currentProject;

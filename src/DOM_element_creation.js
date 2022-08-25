@@ -183,7 +183,7 @@ export function createForm() {
 }
 
 // Creates DOM elements, appends them to DOM, returns reference to main item and delete button"
-function createProjectItem(project) {
+export function createProjectItem(project) {
   const notesGrid = document.getElementById("notesGrid");
   const projectItem = DOMify("div", ["notes__grid--item", "flex-col"], {
     id: `project${project.key}`,
