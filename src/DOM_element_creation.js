@@ -21,6 +21,14 @@ function DOMify(el, classArr, attrObj, textContent) {
   }
   return element;
 }
+// Helper function that removes all elements from notesGrid
+export function clearNotesGrid() {
+  const notesGrid = document.getElementById("notesGrid");
+  const allItems = document.querySelectorAll(".notes__grid--item");
+  allItems.forEach((item) => {
+    notesGrid.removeChild(item);
+  });
+}
 
 // Creates DOM elements, appends them to DOM, returns reference to main item and it's buttons"
 export function createToDoElements(toDo) {
