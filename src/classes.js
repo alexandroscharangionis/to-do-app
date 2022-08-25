@@ -1,7 +1,7 @@
 "use strict";
 
 import { toDoList } from "./toDoFunctions";
-import { projects } from "./projectsFunctions";
+import { projects } from "./projectFunctions";
 
 export class ToDo {
   static keyCount = 0;
