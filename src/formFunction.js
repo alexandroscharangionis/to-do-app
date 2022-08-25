@@ -1,7 +1,7 @@
 "use strict";
 
-import { createToDo, displayToDo, expandClickedItems } from "./toDoFunctions";
-import { createExpandedToDoElements } from "./generate_DOM_elements";
+import { createToDo, displayToDo } from "./toDoFunctions";
+import { createExpandedToDoElements } from "./DOM_element_creation";
 
 // Takes input data, creates new object based on data, displays the data
 export default function intakeFormData(event) {
