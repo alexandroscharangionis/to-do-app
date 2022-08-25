@@ -1,7 +1,7 @@
 "use strict";
 import "../src/style.css";
-import { toDoList } from "./toDoFunctions";
-import { displayToDo } from "./toDoFunctions";
+import { toDoList, displayToDo } from "./toDoFunctions";
+import { clearNotesGrid } from "./DOM_element_creation";
 
 export function sortByActive() {
   for (let i = 0; i < toDoList.length; i++) {
@@ -14,12 +14,7 @@ export function sortByActive() {
 }
 
 export function sortByPriority() {
-  const notesGrid = document.getElementById("notesGrid");
-  const allItems = document.querySelectorAll(".notes__grid--item");
-
-  allItems.forEach((item) => {
-    notesGrid.removeChild(item);
-  });
+  clearNotesGrid();
 
   if (document.getElementById("priority").checked) {
     const sortedList = toDoList.slice(0).sort((a, b) => {
