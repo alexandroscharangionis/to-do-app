@@ -1,10 +1,7 @@
 "use strict";
 import { ToDo } from "/src/classes";
 import "../src/style.css";
-import {
-  createToDoElements,
-  createExpandedToDoElements,
-} from "/src/generate_DOM_elements";
+import { createToDoElements } from "/src/DOM_element_creation";
 
 const notesGrid = document.getElementById("notesGrid");
 export const toDoList = [];
