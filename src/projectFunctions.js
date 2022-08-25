@@ -19,13 +19,13 @@ export function displayProjects() {
     notesGrid.removeChild(item);
   });
 
-  for (const project in projects) {
-    const [projectItem, delBtn] = createProjectItem(project);
+  for (let i = 0; i < projects.length; i++) {
+    const [projectItem, delBtn] = createProjectItem(projects[i]);
     delBtn.addEventListener("click", () => {
       // Removes item from display
       notesGrid.removeChild(projectItem);
       // Removes item from project array also
-      project.deleteItem(project);
+      projects[i].deleteItem(projects[i]);
     });
   }
 }
