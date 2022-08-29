@@ -3,7 +3,7 @@ import { ToDo } from "/src/classes";
 import "../src/style.css";
 import { createToDoElements } from "/src/DOM_element_creation";
 
-const notesGrid = document.getElementById("notesGrid");
+export const notesGrid = document.getElementById("notesGrid");
 export const toDoList = [];
 
 // Creates new object instance, pushes it into array, returns reference to object
