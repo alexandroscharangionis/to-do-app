@@ -1,6 +1,6 @@
 "use strict";
 
-import intakeFormData from "./formFunction";
+import { intakeFormData, createProjectAndOpen } from "./formFunction";
 import { projects, projectTitle } from "./projectFunctions";
 import { currentProject } from "./projectFunctions";
 import { notesGrid } from "./toDoFunctions";
@@ -235,23 +235,71 @@ export function createProjectItem(project) {
   ];
 }
 
+export function createProjectForm() {
+  const toDoWrapper = DOMify("div", ["to-do-wrapper"]);
+  const form = DOMify("form", ["flex-col", "todo__form"], { id: "form" });
+  const errorMsg = DOMify("div", ["errorMsg"], { id: "error" });
+  const titleRow = DOMify("div", ["inputRow", "flex"]);
+  const titleLabel = DOMify(
+    "label",
+    undefined,
+    { for: "project__title" },
+    "Title:"
+  );
+  const titleInput = DOMify("input", ["inputSize"], {
+    id: "project__title",
+    name: "title",
+    type: "text",
+    required: "",
+  });
+  const btnRow = DOMify("div", ["flex_btns"]);
+  const submitBtn = DOMify(
+    "button",
+    ["form_btn"],
+    { id: "submitBtn" },
+    "create"
+  );
+  const resetBtn = DOMify("button", ["form_btn"], { id: "resetBtn" }, "reset");
+
+  titleRow.append(titleLabel, titleInput);
+  btnRow.append(submitBtn, resetBtn);
+  form.append(errorMsg, titleRow, btnRow);
+  toDoWrapper.appendChild(form);
+  notesGrid.appendChild(toDoWrapper);
+
+  document
+    .getElementById("submitBtn")
+    .addEventListener("click", createProjectAndOpen);
+  toDoWrapper.addEventListener("click", (e) => {
+    if (e.target === toDoWrapper) {
+      notesGrid.removeChild(toDoWrapper);
+    } else return;
+  });
+}
+
 // Generates button for creating new project
 export function generateNewProjectButton() {
-  const newProjectBtn = DOMify(
-    "button",
-    ["icon3"],
-    { id: "newProjectBtn" },
-    "+"
-  );
+  if (document.getElementById("newProjectBtn")) {
+    return;
+  } else {
+    const newProjectBtn = DOMify(
+      "button",
+      ["icon3"],
+      { id: "newProjectBtn" },
+      "+"
+    );
 
-  newProjectBtn.style.fontSize = "3rem";
+    newProjectBtn.style.fontSize = "3rem";
 
-  newProjectBtn.onmouseover = function () {
-    this.style.transform = "scale(1.02)";
-  };
-  newProjectBtn.onmouseleave = function () {
-    this.style.transform = "scale(1)";
-  };
+    newProjectBtn.onmouseover = function () {
+      this.style.transform = "scale(1.02)";
+    };
+    newProjectBtn.onmouseleave = function () {
+      this.style.transform = "scale(1)";
+    };
 
-  notesGrid.appendChild(newProjectBtn);
+    notesGrid.appendChild(newProjectBtn);
+
+    newProjectBtn.addEventListener("click", createProjectForm);
+  }
 }
