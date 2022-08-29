@@ -3,6 +3,7 @@
 import intakeFormData from "./formFunction";
 import { projects, projectTitle } from "./projectFunctions";
 import { currentProject } from "./projectFunctions";
+import { notesGrid } from "./toDoFunctions";
 
 // Helper function for creating element, adding classes, attributes and textcontent
 function DOMify(el, classArr, attrObj, textContent) {
@@ -232,4 +233,25 @@ export function createProjectItem(project) {
     document.getElementById(`project${project.key}`),
     document.getElementById(`del${project.key}`),
   ];
+}
+
+// Generates button for creating new project
+export function generateNewProjectButton() {
+  const newProjectBtn = DOMify(
+    "button",
+    ["icon3"],
+    { id: "newProjectBtn" },
+    "+"
+  );
+
+  newProjectBtn.style.fontSize = "3rem";
+
+  newProjectBtn.onmouseover = function () {
+    this.style.transform = "scale(1.02)";
+  };
+  newProjectBtn.onmouseleave = function () {
+    this.style.transform = "scale(1)";
+  };
+
+  notesGrid.appendChild(newProjectBtn);
 }
