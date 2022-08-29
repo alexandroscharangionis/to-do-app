@@ -1,6 +1,7 @@
 "use strict";
 import { Project } from "./classes";
 import {
+  generateNewProjectButton,
   createProjectItem,
   clearNotesGrid,
   createExpandedToDoElements,
@@ -34,6 +35,7 @@ export function displayProjects() {
       projects[i].deleteItem(projects[i]);
     });
 
+    generateNewProjectButton();
     projectItem.addEventListener("click", openProject);
   }
 }
