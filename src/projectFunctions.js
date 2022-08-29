@@ -11,7 +11,7 @@ import {
 import { displayToDo, toDoList, notesGrid } from "./toDoFunctions";
 
 export const projects = [];
-export let currentProject;
+export let currentProject = "";
 export const projectTitle = document.getElementById("projectTitle");
 
 // Create new project obj instance, push it to projects array, update currentProject variable and return the new instance
@@ -33,6 +33,12 @@ export function displayProjects() {
       notesGrid.removeChild(projectItem);
       // Removes item from project array also
       projects[i].deleteItem(projects[i]);
+      // Delete all to-do items from the project too
+      for (let j = 0; j < toDoList.length; i++) {
+        if (toDoList[j].project === projects[i].title) {
+          toDoList[j].deleteItem(toDoList[j]);
+        }
+      }
     });
 
     generateNewProjectButton();
@@ -41,16 +47,16 @@ export function displayProjects() {
 }
 
 // Displays to-do items corresponding to that project
-function openProject(clicked) {
+function openProject(event) {
+  notesGrid.removeChild(document.getElementById("newProjectBtn"));
   clearNotesGrid();
-  changeSidebarContentProject();
   // Loops through projects array to find clicked project based on key and set it as currentProject
   for (let i = 0; i < projects.length; i++) {
-    if (projects[i].key === clicked.target.id.slice(7)) {
+    if (projects[i].key === Number(event.target.id.slice(7))) {
       currentProject = projects[i];
     }
   }
-  projectTitle.textContent = currentProject.title;
+  changeSidebarContentProject();
   // Loops through toDoList array to find every item that has the clicked project assigned to it, then displays every matching item
   for (let i = 0; i < toDoList.length; i++) {
     if (toDoList[i].project === currentProject.title) {
@@ -71,16 +77,17 @@ function openProject(clicked) {
   }
 }
 
+// Another version of openProject function made for the form intake function
 export function openProjectForFormIntake() {
   clearNotesGrid();
-  // Loops through projects array to find form chosen project based on title and set it as currentProject
+  // Loops through projects array to find the chosen project from the form based on title and set it as currentProject
   for (let i = 0; i < projects.length; i++) {
     if (projects[i].title === document.getElementById("todo__project").value) {
       currentProject = projects[i];
     }
   }
   changeSidebarContentProject();
-  // Loops through toDoList array to find every item that has the clicked project assigned to it, then displays every matching item
+  // Loops through toDoList array to find every item that has the chosen project assigned to it, then displays every matching item
   for (let i = 0; i < toDoList.length; i++) {
     if (toDoList[i].project === currentProject.title) {
       const [itemReference, itemObj] = displayToDo(toDoList[i]);
