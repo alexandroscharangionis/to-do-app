@@ -136,6 +136,19 @@ picture {
   min-width: 2rem;
 }
 
+.icon3 {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  font-style: inherit;
+  font-weight: 700;
+  order: 1;
+  box-shadow: 1.5px 3px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+  border: var(--border-s);
+}
+
 .header__logo {
   font-size: var(--fontSize-xl);
 }
