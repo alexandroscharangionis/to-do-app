@@ -200,6 +200,10 @@ export function createForm() {
     .getElementById("submitBtn")
     .addEventListener("click", intakeFormData);
 
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    document.getElementById("form").reset();
+  });
+
   toDoWrapper.addEventListener("click", (e) => {
     if (e.target === toDoWrapper) {
       notesGrid.removeChild(toDoWrapper);
@@ -270,6 +274,11 @@ export function createProjectForm() {
   document
     .getElementById("submitBtn")
     .addEventListener("click", createProjectAndOpen);
+
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    document.getElementById("form").reset();
+  });
+
   toDoWrapper.addEventListener("click", (e) => {
     if (e.target === toDoWrapper) {
       notesGrid.removeChild(toDoWrapper);
