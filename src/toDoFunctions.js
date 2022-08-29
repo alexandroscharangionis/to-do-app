@@ -1,7 +1,7 @@
 "use strict";
 import { ToDo } from "/src/classes";
 import "../src/style.css";
-import { createToDoElements } from "/src/DOM_element_creation";
+import { createToDoElements, clearNotesGrid } from "/src/DOM_element_creation";
 
 export const notesGrid = document.getElementById("notesGrid");
 export const toDoList = [];
@@ -44,5 +44,24 @@ function markAsDone(toDo, toDoItem, doneBtn) {
   } else {
     doneBtn.textContent = "done?";
     toDo.changeStatus(false);
+  }
+}
+
+export function displayAllTodos() {
+  clearNotesGrid();
+  for (let i = 0; i < toDoList.length; i++) {
+    const [itemReference, itemObj] = displayToDo(toDoList[i]);
+
+    itemReference.addEventListener("click", (e) => {
+      if (e.target.nodeName.toLowerCase() !== "button") {
+        createExpandedToDoElements(itemObj);
+        const wrapper = document.querySelector(".to-do-wrapper");
+        wrapper.addEventListener("click", (e) => {
+          if (e.target === wrapper) {
+            notesGrid.removeChild(wrapper);
+          } else return;
+        });
+      } else return;
+    });
   }
 }
