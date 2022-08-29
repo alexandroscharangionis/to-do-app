@@ -1,7 +1,8 @@
 "use strict";
 
 import intakeFormData from "./formFunction";
-import { projects } from "./projectFunctions";
+import { projects, projectTitle } from "./projectFunctions";
+import { currentProject } from "./projectFunctions";
 
 // Helper function for creating element, adding classes, attributes and textcontent
 function DOMify(el, classArr, attrObj, textContent) {
@@ -28,6 +29,21 @@ export function clearNotesGrid() {
   allItems.forEach((item) => {
     notesGrid.removeChild(item);
   });
+}
+
+export function changeSidebarContentProject() {
+  projectTitle.textContent = currentProject.title;
+  projectTitle.setAttribute("contenteditable", "true");
+  document.getElementById("list-item-1").style.display = "block";
+  document.getElementById("list-item-2").style.display = "block";
+  document.getElementById("editIcon").style.display = "block";
+}
+export function changeSidebarContentAllProjects() {
+  projectTitle.textContent = "Projects";
+  projectTitle.setAttribute("contenteditable", "false");
+  document.getElementById("list-item-1").style.display = "none";
+  document.getElementById("list-item-2").style.display = "none";
+  document.getElementById("editIcon").style.display = "none";
 }
 
 // Creates DOM elements, appends them to DOM, returns reference to main item and it's buttons"
