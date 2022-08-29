@@ -1,10 +1,21 @@
 "use strict";
 
 import { createToDo, displayToDo } from "./toDoFunctions";
-import { createExpandedToDoElements } from "./DOM_element_creation";
+import {
+  changeSidebarContentProject,
+  createExpandedToDoElements,
+} from "./DOM_element_creation";
+import { clearNotesGrid } from "./DOM_element_creation";
+import {
+  currentProject,
+  projects,
+  openProjectForFormIntake,
+  createProject,
+  displayProjects,
+} from "./projectFunctions";
 
 // Takes input data, creates new object based on data, displays the data
-export default function intakeFormData(event) {
+export function intakeFormData(event) {
   event.preventDefault();
   const error = document.getElementById("error");
   const title = document.getElementById("todo__title").value;
@@ -21,6 +32,7 @@ export default function intakeFormData(event) {
     const [itemReference, itemObj] = displayToDo(
       createToDo(title, project, date, description)
     );
+    openProjectForFormIntake();
 
     document.getElementById("form").reset();
     notesGrid.removeChild(document.querySelector(".to-do-wrapper"));
@@ -37,5 +49,25 @@ export default function intakeFormData(event) {
         });
       } else return;
     });
+  }
+}
+
+export function createProjectAndOpen(event) {
+  event.preventDefault();
+  const error = document.getElementById("error");
+  const title = document.getElementById("project__title").value;
+
+  if (title === "") {
+    error.textContent = "Please choose a title";
+    return;
+  } else if (title.length > 20) {
+    error.textContent = "Title shouldn't be longer than 20 characters.";
+  } else {
+    error.textContent = "";
+
+    const newProject = createProject(title);
+    document.getElementById("form").reset();
+    notesGrid.removeChild(document.querySelector(".to-do-wrapper"));
+    displayProjects();
   }
 }
