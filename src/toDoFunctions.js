@@ -55,6 +55,7 @@ export function displayAllTodos() {
   clearNotesGrid();
   for (let i = 0; i < toDoList.length; i++) {
     projects.forEach((project) => {
+      // If current todo title matches an existing project, display it. Else, delete it (because it means project no longer exists).
       if (toDoList[i].project === project.title) {
         const [itemReference, itemObj] = displayToDo(toDoList[i]);
 
