@@ -2,14 +2,18 @@
 import { ToDo } from "/src/classes";
 import "../src/style.css";
 import { createToDoElements, clearNotesGrid } from "/src/DOM_element_creation";
+import { saveToLocal } from "./localStorage_func";
+import { projects } from "./projectFunctions";
 
 export const notesGrid = document.getElementById("notesGrid");
-export const toDoList = [];
+export const toDoList = JSON.parse(localStorage.getItem("todoList")) || [];
 
 // Creates new object instance, pushes it into array, returns reference to object
 export function createToDo(title, project, dueDate, text) {
   const toDo = new ToDo(title, project, dueDate, text);
+  toDo.saveCountToLocal();
   toDoList.push(toDo);
+  saveToLocal();
   return toDo;
 }
 
@@ -23,7 +27,7 @@ export function displayToDo(toDo) {
     // Removes item from display
     notesGrid.removeChild(toDoItem);
     // Removes item from array also
-    toDo.deleteItem(toDo);
+    deleteItem(toDo, toDoList);
   });
 
   doneBtn.addEventListener("click", () => {
@@ -40,28 +44,44 @@ function markAsDone(toDo, toDoItem, doneBtn) {
   // Toggle button text content and toDo 'done' property
   if (doneBtn.textContent === "done?") {
     doneBtn.textContent = "done!";
-    toDo.changeStatus(true);
+    changeStatus(toDo, true);
   } else {
     doneBtn.textContent = "done?";
-    toDo.changeStatus(false);
+    changeStatus(toDo, false);
   }
 }
 
 export function displayAllTodos() {
   clearNotesGrid();
   for (let i = 0; i < toDoList.length; i++) {
-    const [itemReference, itemObj] = displayToDo(toDoList[i]);
+    projects.forEach((project) => {
+      if (toDoList[i].project === project.title) {
+        const [itemReference, itemObj] = displayToDo(toDoList[i]);
 
-    itemReference.addEventListener("click", (e) => {
-      if (e.target.nodeName.toLowerCase() !== "button") {
-        createExpandedToDoElements(itemObj);
-        const wrapper = document.querySelector(".to-do-wrapper");
-        wrapper.addEventListener("click", (e) => {
-          if (e.target === wrapper) {
-            notesGrid.removeChild(wrapper);
+        itemReference.addEventListener("click", (e) => {
+          if (e.target.nodeName.toLowerCase() !== "button") {
+            createExpandedToDoElements(itemObj);
+            const wrapper = document.querySelector(".to-do-wrapper");
+            wrapper.addEventListener("click", (e) => {
+              if (e.target === wrapper) {
+                notesGrid.removeChild(wrapper);
+              } else return;
+            });
           } else return;
         });
-      } else return;
+      } else {
+        deleteItem(toDoList[i], toDoList);
+      }
     });
   }
+}
+
+export function deleteItem(item, arr) {
+  arr.splice(arr.indexOf(item), 1);
+  saveToLocal();
+}
+
+export function changeStatus(obj, status) {
+  obj.done = status;
+  saveToLocal();
 }
