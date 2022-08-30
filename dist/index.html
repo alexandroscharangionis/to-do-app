@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/style.css" />
+    <title>Do the Do</title>
+  </head>
+  <body>
+    <div class="container">
+      <header id="header">
+        <nav class="header__nav flex">
+          <h1 id="homeLogo" class="header__logo">Do the Do</h1>
+          <ul class="header__nav--list flex">
+            <li><button id="projectsBtn">Projects</button></li>
+            <li><button id="allTodosBtn">All To Dos</button></li>
+            <li>
+              <button id="createNew">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main class="notes grid">
+        <nav class="notes__nav flex-col">
+          <div class="flex notes__nav--projectTitle">
+            <h2
+              id="projectTitle"
+              contenteditable="true"
+              class="notes__nav--title"
+            ></h2>
+            <div id="editIcon" class="icon2 flex">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+          <ul class="notes__nav--list flex-col">
+            <li id="list-item-1" class="flex">
+              <label class="toggle" for="active">
+                <input class="toggle__input" type="checkbox" id="active" />
+                <div class="toggle__fill"></div>
+              </label>
+              <span>Active</span>
+            </li>
+            <li id="list-item-2" class="flex">
+              <label class="toggle" for="priority">
+                <input class="toggle__input" type="checkbox" id="priority" />
+                <div class="toggle__fill"></div>
+              </label>
+              <span>Priority</span>
+            </li>
+          </ul>
+        </nav>
+        <div id="notesGrid" class="notes__grid"></div>
+      </main>
+    </div>
+    <script src="../dist/bundle.js"></script>
+  </body>
+</html>
