@@ -1,10 +1,7 @@
 "use strict";
 
-import { toDoList } from "./toDoFunctions";
-import { projects } from "./projectFunctions";
-
 export class ToDo {
-  static keyCount = 0;
+  static keyCount = JSON.parse(localStorage.getItem("todoCount")) || 0;
   constructor(title, project, dueDate, text) {
     this.title = title;
     this.dueDate = dueDate;
@@ -14,23 +11,19 @@ export class ToDo {
     this.project = project;
   }
 
-  deleteItem(item) {
-    toDoList.splice(toDoList.indexOf(item), 1);
-  }
-
-  changeStatus(status) {
-    this.done = status;
+  saveCountToLocal() {
+    localStorage.setItem("todoCount", JSON.stringify(ToDo.keyCount));
   }
 }
 
 export class Project {
-  static keyCount = 0;
+  static keyCount = JSON.parse(localStorage.getItem("projectCount")) || 0;
   constructor(title) {
     this.title = title;
     this.key = Project.keyCount++;
   }
 
-  deleteItem(item) {
-    projects.splice(projects.indexOf(item), 1);
+  saveCountToLocal() {
+    localStorage.setItem("projectCount", JSON.stringify(Project.keyCount));
   }
 }
