@@ -4,8 +4,7 @@
   "description": "To-Do list manager app",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "deploy-demo": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
