@@ -8,17 +8,20 @@ import {
   changeSidebarContentAllProjects,
   changeSidebarContentProject,
 } from "./DOM_element_creation";
-import { displayToDo, toDoList, notesGrid } from "./toDoFunctions";
+import { displayToDo, toDoList, notesGrid, deleteItem } from "./toDoFunctions";
+import { saveToLocal } from "./localStorage_func";
 
-export const projects = [];
+export const projects = JSON.parse(localStorage.getItem("projectList")) || [];
 export let currentProject = "";
 export const projectTitle = document.getElementById("projectTitle");
 
 // Create new project obj instance, push it to projects array, update currentProject variable and return the new instance
 export function createProject(title) {
   const project = new Project(title);
+  project.saveCountToLocal();
   projects.push(project);
   currentProject = project;
+  saveToLocal();
   return project;
 }
 
@@ -32,13 +35,7 @@ export function displayProjects() {
       // Removes item from display
       notesGrid.removeChild(projectItem);
       // Removes item from project array also
-      projects[i].deleteItem(projects[i]);
-      // Delete all to-do items from the project too
-      for (let j = 0; j < toDoList.length; i++) {
-        if (toDoList[j].project === projects[i].title) {
-          toDoList[j].deleteItem(toDoList[j]);
-        }
-      }
+      deleteItem(projects[i], projects);
     });
 
     generateNewProjectButton();
