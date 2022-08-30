@@ -12,7 +12,8 @@ import {
 } from "./projectFunctions";
 import { displayAllTodos } from "./toDoFunctions";
 
-createProject("My Project");
+// createProject("My Project");
+loadPage();
 projectTitle.textContent = currentProject.title;
 const projectsBtn = document.getElementById("projectsBtn");
 const allTodosBtn = document.getElementById("allTodosBtn");
@@ -26,3 +27,14 @@ newBtn.addEventListener("click", createForm);
 projectTitle.addEventListener("blur", editProjectTitle);
 active.addEventListener("click", sortByActive);
 priority.addEventListener("click", sortByPriority);
+
+function loadPage() {
+  if (
+    JSON.parse(localStorage.getItem("projectList")) &&
+    JSON.parse(localStorage.getItem("todoList"))
+  ) {
+    displayProjects();
+  } else {
+    createProject("My Project");
+  }
+}
