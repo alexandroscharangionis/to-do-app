@@ -1,14 +1,8 @@
 "use strict";
 
 import { createToDo, displayToDo } from "./toDoFunctions";
+import { createExpandedToDoElements } from "./DOM_element_creation";
 import {
-  changeSidebarContentProject,
-  createExpandedToDoElements,
-} from "./DOM_element_creation";
-import { clearNotesGrid } from "./DOM_element_creation";
-import {
-  currentProject,
-  projects,
   openProjectForFormIntake,
   createProject,
   displayProjects,
